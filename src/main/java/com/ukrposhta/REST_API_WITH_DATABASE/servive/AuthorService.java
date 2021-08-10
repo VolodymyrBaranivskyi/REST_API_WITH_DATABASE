@@ -1,4 +1,9 @@
 package com.ukrposhta.REST_API_WITH_DATABASE.servive;
 
-public class AuthorService {
+import com.ukrposhta.REST_API_WITH_DATABASE.domain.Author;
+
+public interface AuthorService {
+
+    public Author findOne(int id);
+
 }
