@@ -1,13 +1,17 @@
-package com.ukrposhta.REST_API_WITH_DATABASE.servive.ImpService;
+package com.ukrposhta.REST_API_WITH_DATABASE.service.ImpService;
 
 import com.ukrposhta.REST_API_WITH_DATABASE.domain.Author;
 import com.ukrposhta.REST_API_WITH_DATABASE.repository.AuthorRepository;
-import com.ukrposhta.REST_API_WITH_DATABASE.servive.AuthorService;
+import com.ukrposhta.REST_API_WITH_DATABASE.service.AuthorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class AuthorServiceImpl implements AuthorService {
 
     @Autowired

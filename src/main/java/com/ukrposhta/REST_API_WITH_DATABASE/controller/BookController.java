@@ -1,7 +1,9 @@
 package com.ukrposhta.REST_API_WITH_DATABASE.controller;
 
 import com.ukrposhta.REST_API_WITH_DATABASE.domain.Book;
-import com.ukrposhta.REST_API_WITH_DATABASE.servive.BookService;
+import com.ukrposhta.REST_API_WITH_DATABASE.service.BookService;
+import com.ukrposhta.REST_API_WITH_DATABASE.service.ImpService.BookServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +13,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/book")
 public class BookController {
     @Autowired
-    private BookService bookService;
+    private BookServiceImpl bookService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

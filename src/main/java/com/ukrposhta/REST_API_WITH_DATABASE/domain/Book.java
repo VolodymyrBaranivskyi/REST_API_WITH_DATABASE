@@ -3,6 +3,7 @@ package com.ukrposhta.REST_API_WITH_DATABASE.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,7 @@ public class Book {
     private int page_count;
 
     @Column(name = "publish_date")
-    private Date publish_date;
+    private LocalDate publish_date;
 
     @Column(name = "title")
     private String title;

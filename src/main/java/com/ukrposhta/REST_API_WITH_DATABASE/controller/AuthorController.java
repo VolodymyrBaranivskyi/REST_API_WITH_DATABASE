@@ -1,22 +1,25 @@
 package com.ukrposhta.REST_API_WITH_DATABASE.controller;
 
 import com.ukrposhta.REST_API_WITH_DATABASE.domain.Author;
-import com.ukrposhta.REST_API_WITH_DATABASE.servive.AuthorService;
+import com.ukrposhta.REST_API_WITH_DATABASE.service.AuthorService;
+import com.ukrposhta.REST_API_WITH_DATABASE.service.ImpService.AuthorServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/author")
 public class AuthorController {
 
     @Autowired
-    private AuthorService authorService;
+    private AuthorServiceImpl authorService;
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

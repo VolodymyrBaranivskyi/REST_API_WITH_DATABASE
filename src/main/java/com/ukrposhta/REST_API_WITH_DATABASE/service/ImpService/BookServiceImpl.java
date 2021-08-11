@@ -1,10 +1,8 @@
-package com.ukrposhta.REST_API_WITH_DATABASE.servive.ImpService;
+package com.ukrposhta.REST_API_WITH_DATABASE.service.ImpService;
 
-import com.ukrposhta.REST_API_WITH_DATABASE.domain.Author;
 import com.ukrposhta.REST_API_WITH_DATABASE.domain.Book;
-import com.ukrposhta.REST_API_WITH_DATABASE.repository.AuthorRepository;
 import com.ukrposhta.REST_API_WITH_DATABASE.repository.BookRepository;
-import com.ukrposhta.REST_API_WITH_DATABASE.servive.BookService;
+import com.ukrposhta.REST_API_WITH_DATABASE.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -23,6 +21,7 @@ public class BookServiceImpl implements BookService {
     public Book addBook(Book book) {
         return bookRepository.save(book);
     }
+
     @Override
     public Book getBookById(long bookId) {
         return bookRepository.findById(bookId).get();

@@ -1,4 +1,4 @@
-package com.ukrposhta.REST_API_WITH_DATABASE.servive;
+package com.ukrposhta.REST_API_WITH_DATABASE.service;
 
 import com.ukrposhta.REST_API_WITH_DATABASE.domain.Author;
 import org.springframework.stereotype.Service;
