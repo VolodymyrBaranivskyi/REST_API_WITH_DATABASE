@@ -1,37 +1,63 @@
 package com.ukrposhta.REST_API_WITH_DATABASE.controller;
 
 import com.ukrposhta.REST_API_WITH_DATABASE.domain.Author;
-import com.ukrposhta.REST_API_WITH_DATABASE.repository.AuthorRepository;
+import com.ukrposhta.REST_API_WITH_DATABASE.servive.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.NoSuchElementException;
 
-@Controller
+@RestController
+@RequestMapping("/author")
 public class AuthorController {
 
     @Autowired
-    private AuthorRepository authorRepository;
+    private AuthorService authorService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Collection<Author>> getAuthors(){
-        return new ResponseEntity<>(authorRepository.findAll(), HttpStatus.OK)
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Author addAuthor(@RequestBody Author author) {
+        return authorService.addAuthor(author);
     }
-
-    @RequestMapping(value = "/authors/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Collection<Author>> getAuthor(@PathVariable int id){
-        Author author = authorRepository.findOne(id);
-
-        if(author != null) {
-            return new ResponseEntity<>(authorRepository.findOne(id), HttpStatus.OK)
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    // Fetch all author records
+    @GetMapping
+    public List<Author> getAllAuthors(){
+        return authorService.getAllAuthors();
+    }
+    // Fetch single author
+    @GetMapping("/{id}")
+    public Author getBookById(@PathVariable("id") long authorId){
+        return authorService.getAuthorById(authorId);
+    }
+    // Update user record
+    @PutMapping("/update-author")
+    public ResponseEntity<String> updateUser(@RequestBody Author author) {
+        try {
+            authorService.updateAuthor(author);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }catch(NoSuchElementException ex){
+            // log the error message
+            System.out.println(ex.getMessage());
+            return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+        }
+    }
+    // Delete author record
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteAuthor(@PathVariable long id){
+        try {
+            authorService.deleteAuthorById(id);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }catch(RuntimeException ex){
+            // log the error message
+            System.out.println(ex.getMessage());
+            return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
     }
 
 }
+
+

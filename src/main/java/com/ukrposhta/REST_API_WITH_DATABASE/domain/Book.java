@@ -16,8 +16,8 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authors_id_seq")
     @SequenceGenerator(name = "authors_id_seq", sequenceName = "authors_id_seq", initialValue = 4, allocationSize = 1)
     @Column(name = "book_id")
-
     private Long id;
+
     @Column(name = "isbn")
     private String isbn;
 
@@ -33,9 +33,13 @@ public class Book {
     @Column(name = "title_original")
     private String title_original;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = { @JoinColumn(name = "author_id") })
-    private Set<Author> books_authors = new HashSet<Author>(0);
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "books")
+    private Set<Author> authors = new HashSet<>();
 
 }
 
