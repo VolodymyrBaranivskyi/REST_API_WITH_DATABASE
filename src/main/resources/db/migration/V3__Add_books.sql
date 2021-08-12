@@ -8,4 +8,8 @@ INSERT INTO books (book_id, isbn, page_count, publish_date, title, title_origina
 
 
 
+insert into authors_books(author_id, book_id)
+values(5, 2);
 
+insert into authors_books( author_id, book_id)
+values(2, 3);

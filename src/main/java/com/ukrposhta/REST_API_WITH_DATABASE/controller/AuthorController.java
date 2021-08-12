@@ -31,6 +31,12 @@ public class AuthorController {
     public List<Author> getAllAuthors(){
         return authorService.getAllAuthors();
     }
+    // Fetch all author records
+    @GetMapping("/search-author/{titleString}")
+    public List<Author> getAllAuthorsByConsistTitleString(@PathVariable("titleString") String titleString){
+        System.out.println("Query: " + titleString);
+        return authorService.getAuthorsByBookTitle(titleString);
+    }
     // Fetch single author
     @GetMapping("/{id}")
     public Author getBookById(@PathVariable("id") long authorId){

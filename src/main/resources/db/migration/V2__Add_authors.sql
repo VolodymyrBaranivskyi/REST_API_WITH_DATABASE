@@ -1,5 +1,8 @@
 
 
+
+
+
 insert into authors(author_id, first_name, second_name, last_name, birth_date)
 values(1, 'John', 'Admin1', 'Doe', '2001-04-07');
 
@@ -17,5 +20,7 @@ values(4, 'John', 'Admin5', 'Doe', '2021-04-07');
 
 insert into authors(author_id, first_name, second_name, last_name, birth_date)
 values(6, 'John', 'Admin6', 'Doe', '2031-04-07');
+
+
 
 

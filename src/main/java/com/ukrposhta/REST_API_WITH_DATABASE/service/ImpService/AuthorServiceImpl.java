@@ -6,8 +6,10 @@ import com.ukrposhta.REST_API_WITH_DATABASE.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,6 +48,12 @@ public class AuthorServiceImpl implements AuthorService {
         }catch(DataAccessException ex){
             throw new RuntimeException(ex.getMessage());
         }
+    }
+
+    @Override
+    @Query("select * from authors a inner join authors_books ab on a.author_id = ab.author_id inner join books b on ab.book_id = b.book_id   where b.title LIKE '%One%'")
+    public List<Author> getAuthorsByBookTitle(String titleString) {
+        return authorRepository.getAuthorsByBookPartTitle(titleString);
     }
 }
 

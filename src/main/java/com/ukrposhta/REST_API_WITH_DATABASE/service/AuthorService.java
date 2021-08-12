@@ -13,5 +13,6 @@ public interface AuthorService {
     public List<Author> getAllAuthors();
     public void updateAuthor(Author author);
     public void deleteAuthorById(long authorId);
+    public List<Author> getAuthorsByBookTitle(String titleString);
 
 }
